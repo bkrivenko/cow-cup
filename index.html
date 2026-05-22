@@ -173,6 +173,11 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
+  @keyframes fadeScrollHint {
+    from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+  }
+
   .divider-gold {
     width: 200px;
     height: 2px;
@@ -195,7 +200,7 @@
     gap: 8px;
     color: var(--gold);
     opacity: 0;
-    animation: fadeUp 1s ease forwards 2s;
+    animation: fadeScrollHint 1s ease forwards 2s;
   }
 
   .scroll-hint span {
@@ -515,12 +520,63 @@
     opacity: 0.6;
   }
 
-  /* ——— RESPONSIVE ——— */
-  @media (max-width: 768px) {
-    .game-inner { grid-template-columns: 1fr; }
-    .players-wrap { grid-template-columns: 1fr; gap: 20px; }
-    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  /* ——— RESPONSIVE TABLET ——— */
+  @media (max-width: 900px) {
+    .game-inner { grid-template-columns: 1fr; gap: 40px; }
+    .game-text .section-title { text-align: center !important; }
+    .game-text .section-label { text-align: center !important; }
     .map-visual { max-width: 280px; margin: 0 auto; }
+    .players-wrap { grid-template-columns: 1fr 1fr; gap: 20px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ——— RESPONSIVE MOBILE ——— */
+  @media (max-width: 600px) {
+    .hero { padding: 80px 16px 100px; min-height: 100svh; }
+    .trophy-icon { font-size: 56px; margin-bottom: 16px; }
+    .main-title { font-size: clamp(52px, 17vw, 76px); line-height: 0.88; }
+    .eyebrow { font-size: 10px; letter-spacing: 0.15em; }
+    .subtitle { font-size: 16px; margin-top: 16px; }
+    .divider-gold { width: 120px; margin: 18px auto; }
+    .scroll-hint { bottom: 20px; }
+
+    .game-section { padding: 60px 16px !important; }
+    .game-inner { gap: 28px; }
+    .game-text p { font-size: 16px; }
+    .game-text .section-title { font-size: clamp(26px,8vw,36px) !important; margin-bottom:20px !important; }
+    .map-visual { max-width: 220px; }
+    .section-title { font-size: clamp(28px,8vw,42px); margin-bottom: 32px; }
+    .section-label { font-size: 11px; letter-spacing: 0.25em; }
+
+    .players-wrap { grid-template-columns: 1fr; gap: 14px; }
+    .player-card { padding: 24px 18px; }
+    .player-avatar { width: 62px; height: 62px; font-size: 26px; margin-bottom: 12px; }
+    .player-name { font-size: 26px; }
+    .player-title { font-size: 13px; }
+    .player-desc { font-size: 14px; line-height: 1.6; }
+
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .stat-item { padding: 24px 12px; }
+    .stat-num { font-size: 36px; }
+    .stat-label { font-size: 12px; }
+
+    .trophy-section { padding: 72px 16px; }
+    .trophy-big { font-size: 90px; margin-bottom: 24px; }
+    .trophy-quote { font-size: 17px; padding: 0 4px; }
+    .track-line { max-width: 100%; padding: 0 4px; }
+    .ornament { font-size: 18px; letter-spacing: 0.3em; }
+
+    .bottom-banner { padding: 44px 16px; }
+    .bottom-banner p { font-size: 13px; margin-top: 10px; }
+
+    footer { padding: 28px 16px; font-size: 12px; }
+    footer p { line-height: 1.9; }
+  }
+
+  @media (max-width: 360px) {
+    .main-title { font-size: 46px; }
+    .eyebrow { font-size: 9px; letter-spacing: 0.1em; }
+    .player-name { font-size: 24px; }
   }
 
   /* ——— HORIZONTAL TRACK LINE ——— */
@@ -646,7 +702,7 @@
 </div>
 
 <!-- ===== PLAYERS ===== -->
-<div class="full-section" style="background:#0F0A04; padding: 100px 20px;">
+<div class="full-section" style="background:#0F0A04; padding: clamp(60px,10vw,100px) 20px;">
   <div style="max-width:1100px; margin:0 auto;">
     <p class="section-label">Участники</p>
     <h2 class="section-title">Три Ковбоя Прерий</h2>
@@ -685,7 +741,7 @@
 </div>
 
 <!-- ===== STATS ===== -->
-<div class="full-section" style="background: var(--brown-dark); padding: 0 20px 80px;">
+<div class="full-section" style="background: var(--brown-dark); padding: 0 20px clamp(50px,8vw,80px);">
   <div style="max-width:1100px; margin:0 auto;">
     <div class="stats-grid">
       <div class="stat-item">
