@@ -951,6 +951,16 @@ footer {
 </head>
 <body>
 
+<!-- MUSIC: In Hell I'll Be In Good Company - The Dead South (YouTube embed) -->
+<div id="ytContainer" style="position:fixed;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;">
+  <iframe id="ytPlayer" width="1" height="1"
+    src="https://www.youtube.com/embed/_HlLGUitrJE?autoplay=1&loop=1&playlist=_HlLGUitrJE&mute=0&enablejsapi=1"
+    allow="autoplay; encrypted-media"
+    frameborder="0"></iframe>
+</div>
+
+<div id="musicBtn" onclick="toggleMusic()" title="Музыка вкл/выкл" style="position:fixed;bottom:24px;right:24px;z-index:9999;width:48px;height:48px;border-radius:50%;background:rgba(26,14,4,0.9);border:1.5px solid #C9930A;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:22px;box-shadow:0 0 16px rgba(201,147,10,0.3);transition:transform 0.2s,box-shadow 0.2s;" onmouseenter="this.style.transform='scale(1.1)';this.style.boxShadow='0 0 24px rgba(201,147,10,0.5)'" onmouseleave="this.style.transform='scale(1)';this.style.boxShadow='0 0 16px rgba(201,147,10,0.3)'">🎵</div>
+
 <!-- CURSOR -->
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
@@ -1619,7 +1629,7 @@ window.addEventListener('scroll',()=>{
 
 /* ===== COUNTDOWN ===== */
 (function(){
-  const target = new Date('2026-05-31T15:00:00');
+  const target = new Date('2026-07-01T15:00:00');
   const els = {
     d: document.getElementById('cd-days'),
     h: document.getElementById('cd-hours'),
@@ -1666,6 +1676,26 @@ window.addEventListener('scroll',()=>{
     s.style.animation=`twinkle ${2+Math.random()*4}s ease-in-out infinite ${Math.random()*5}s`;
     c.appendChild(s);
   }
+})();
+
+/* ===== MUSIC (YouTube iframe) ===== */
+(function(){
+  const btn = document.getElementById('musicBtn');
+  const container = document.getElementById('ytContainer');
+  let muted = false;
+
+  // YouTube iframe is already autoplaying via URL params
+  // Toggle mute by replacing src with/without mute=1
+  window.toggleMusic = function(){
+    const iframe = document.getElementById('ytPlayer');
+    muted = !muted;
+    const base = 'https://www.youtube.com/embed/_HlLGUitrJE?autoplay=1&loop=1&playlist=_HlLGUitrJE&enablejsapi=1&mute=';
+    iframe.src = base + (muted ? '1' : '0');
+    btn.textContent = muted ? '\u{1F507}' : '\u{1F50A}';
+  };
+
+  // Show playing state after short delay
+  setTimeout(()=>{ btn.textContent = '\u{1F50A}'; }, 1500);
 })();
 </script>
 </body>
