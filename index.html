@@ -947,17 +947,81 @@ footer {
   .main-title { font-size:50px; }
   .badge      { font-size:9px; letter-spacing:0.18em; }
 }
+
+/* ===================== SPLASH SCREEN ===================== */
+#splash {
+  position: fixed; inset: 0; z-index: 99999;
+  background: #0A0603;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.8s ease;
+}
+#splash.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+.splash-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(48px, 10vw, 100px);
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  text-shadow: 0 0 60px rgba(201,147,10,0.5);
+  animation: splashPulse 2s ease-in-out infinite;
+}
+.splash-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(16px, 2.5vw, 22px);
+  color: var(--dust);
+  letter-spacing: 0.2em;
+  margin-top: 16px;
+}
+.splash-btn {
+  margin-top: 48px;
+  border: 1.5px solid var(--gold);
+  padding: 14px 48px;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.4em;
+  font-size: 18px;
+  color: var(--gold);
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s, background 0.3s;
+}
+.splash-btn:hover {
+  background: var(--gold);
+  color: var(--brown-dark);
+}
+.splash-emoji {
+  font-size: clamp(48px, 8vw, 80px);
+  margin-bottom: 24px;
+  animation: splashFloat 3s ease-in-out infinite;
+}
+@keyframes splashPulse {
+  0%,100% { text-shadow: 0 0 40px rgba(201,147,10,0.4); }
+  50%      { text-shadow: 0 0 80px rgba(201,147,10,0.8), 0 0 120px rgba(201,147,10,0.3); }
+}
+@keyframes splashFloat {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
 </style>
 </head>
 <body>
 
-<!-- MUSIC: In Hell I'll Be In Good Company - The Dead South (YouTube embed) -->
-<div id="ytContainer" style="position:fixed;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;">
-  <iframe id="ytPlayer" width="1" height="1"
-    src="https://www.youtube.com/embed/_HlLGUitrJE?autoplay=1&loop=1&playlist=_HlLGUitrJE&mute=0&enablejsapi=1"
-    allow="autoplay; encrypted-media"
-    frameborder="0"></iframe>
+<div id="splash" onclick="startSite()">
+  <div class="splash-emoji">🤠</div>
+  <div class="splash-title">Кубок Коров</div>
+  <div class="splash-sub">Великий Западный Путь</div>
+  <button class="splash-btn">ВОЙТИ В САЛУН</button>
 </div>
+
+<!-- MUSIC: In Hell I'll Be In Good Company - The Dead South -->
+<!-- Положи файл song.mp3 в ту же папку что и index.html -->
+<audio id="bgMusic" src="song.mp3" loop preload="auto"></audio>
 
 <div id="musicBtn" onclick="toggleMusic()" title="Музыка вкл/выкл" style="position:fixed;bottom:24px;right:24px;z-index:9999;width:48px;height:48px;border-radius:50%;background:rgba(26,14,4,0.9);border:1.5px solid #C9930A;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:22px;box-shadow:0 0 16px rgba(201,147,10,0.3);transition:transform 0.2s,box-shadow 0.2s;" onmouseenter="this.style.transform='scale(1.1)';this.style.boxShadow='0 0 24px rgba(201,147,10,0.5)'" onmouseleave="this.style.transform='scale(1)';this.style.boxShadow='0 0 16px rgba(201,147,10,0.3)'">🎵</div>
 
@@ -1108,6 +1172,67 @@ footer {
 }
 @keyframes blinkSep {
   0%,100%{opacity:0.4;} 50%{opacity:0.1;}
+}
+
+/* ===================== SPLASH SCREEN ===================== */
+#splash {
+  position: fixed; inset: 0; z-index: 99999;
+  background: #0A0603;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.8s ease;
+}
+#splash.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+.splash-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(48px, 10vw, 100px);
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  text-shadow: 0 0 60px rgba(201,147,10,0.5);
+  animation: splashPulse 2s ease-in-out infinite;
+}
+.splash-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(16px, 2.5vw, 22px);
+  color: var(--dust);
+  letter-spacing: 0.2em;
+  margin-top: 16px;
+}
+.splash-btn {
+  margin-top: 48px;
+  border: 1.5px solid var(--gold);
+  padding: 14px 48px;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.4em;
+  font-size: 18px;
+  color: var(--gold);
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s, background 0.3s;
+}
+.splash-btn:hover {
+  background: var(--gold);
+  color: var(--brown-dark);
+}
+.splash-emoji {
+  font-size: clamp(48px, 8vw, 80px);
+  margin-bottom: 24px;
+  animation: splashFloat 3s ease-in-out infinite;
+}
+@keyframes splashPulse {
+  0%,100% { text-shadow: 0 0 40px rgba(201,147,10,0.4); }
+  50%      { text-shadow: 0 0 80px rgba(201,147,10,0.8), 0 0 120px rgba(201,147,10,0.3); }
+}
+@keyframes splashFloat {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
 }
 </style>
 
@@ -1678,25 +1803,50 @@ window.addEventListener('scroll',()=>{
   }
 })();
 
-/* ===== MUSIC (YouTube iframe) ===== */
+/* ===== MUSIC AUTOPLAY ===== */
 (function(){
-  const btn = document.getElementById('musicBtn');
-  const container = document.getElementById('ytContainer');
-  let muted = false;
+  const audio = document.getElementById('bgMusic');
+  const btn   = document.getElementById('musicBtn');
 
-  // YouTube iframe is already autoplaying via URL params
-  // Toggle mute by replacing src with/without mute=1
+  audio.volume = 0.45;
+
+  // Try autoplay immediately
+  function tryPlay(){
+    const p = audio.play();
+    if(p !== undefined){
+      p.then(()=>{ btn.textContent = '\uD83D\uDD0A'; })
+       .catch(()=>{}); // blocked — will start on first click
+    }
+  }
+  tryPlay();
+
+  // Start on first user interaction (browser autoplay policy)
+  function onInteract(){
+    if(audio.paused){ audio.play(); btn.textContent = '\uD83D\uDD0A'; }
+    document.removeEventListener('click',    onInteract);
+    document.removeEventListener('keydown',  onInteract);
+    document.removeEventListener('touchstart',onInteract);
+  }
+  document.addEventListener('click',     onInteract);
+  document.addEventListener('keydown',   onInteract);
+  document.addEventListener('touchstart',onInteract);
+
   window.toggleMusic = function(){
-    const iframe = document.getElementById('ytPlayer');
-    muted = !muted;
-    const base = 'https://www.youtube.com/embed/_HlLGUitrJE?autoplay=1&loop=1&playlist=_HlLGUitrJE&enablejsapi=1&mute=';
-    iframe.src = base + (muted ? '1' : '0');
-    btn.textContent = muted ? '\u{1F507}' : '\u{1F50A}';
+    if(audio.paused){ audio.play(); btn.textContent = '\uD83D\uDD0A'; }
+    else             { audio.pause(); btn.textContent = '\uD83C\uDFB5'; }
   };
-
-  // Show playing state after short delay
-  setTimeout(()=>{ btn.textContent = '\u{1F50A}'; }, 1500);
 })();
+
+/* ===== SPLASH ===== */
+function startSite(){
+  const splash = document.getElementById('splash');
+  const audio  = document.getElementById('bgMusic');
+  audio.volume = 0.45;
+  audio.play().catch(()=>{});
+  document.getElementById('musicBtn').textContent = '\uD83D\uDD0A';
+  splash.classList.add('hide');
+  setTimeout(()=>{ splash.style.display='none'; }, 900);
+}
 </script>
 </body>
 </html>
